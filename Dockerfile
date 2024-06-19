@@ -19,19 +19,20 @@ RUN apt-get update && apt-get install  ffmpeg libsm6 libxext6 unzip -y && \
 # when the container is run by SYLVA IT infrastructure. The script itself should just start your algorithm 
 # to get all files in folder /data/input processed.
 
-#COPY src/bin/startAlgorithm /bin/startAlgorithm
-#RUN chmod a+x /bin/startAlgorithm
-
-# Don't forget to provide your algorithm...
-
-#RUN mkdir /opt/sylva-algorithm -p
-#COPY src/algorithm.py /opt/sylva-algorithm/algorithm.py
-
 # Any working directory can be chosen as per choice like '/' or '/home' etc
 WORKDIR /wd
 
 #to COPY the remote file at working directory in container
 COPY . ./
+
+
+COPY src/bin/startAlgorithm /bin/startAlgorithm
+RUN chmod a+x /bin/startAlgorithm
+
+# Don't forget to provide your algorithm...
+
+RUN mkdir /opt/sylva-algorithm -p
+COPY src/algorithm.py /opt/sylva-algorithm/algorithm.py
 
 RUN gdown https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n
 RUN mkdir -p src/models && unzip models.zip -d src/
