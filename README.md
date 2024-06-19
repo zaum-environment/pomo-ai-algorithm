@@ -9,8 +9,6 @@ Step 2: Segmentation. A set of sample images is used to manually draw segmentati
 Step 3: Classification. After segmentation and pre-classification, single-object images are fed into the classification based on a VGG-19 CNN. This network was trained with a total of more than 150’000 single, labelled pollen objects - based on a database collected over more than 15 years of development of the BAA500.
 The classification also yields a quality measure that determines the reliability of the identification process for every single object. The results are then stored in an XML output file. 
 
-
-
 References:
 - [Helmut Hund GmbH](https://www.hund.de)
 
