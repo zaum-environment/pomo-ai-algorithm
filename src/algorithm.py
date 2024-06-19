@@ -144,7 +144,7 @@ if __name__ == "__main__":
     
     """
     logger.info("Starting Mainloop")
-    while 1:
+    for myFile in os.listdir(config.get('MAIN', 'PathSamplesIn')):
         
         start = time.time()
 
