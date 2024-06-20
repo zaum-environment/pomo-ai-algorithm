@@ -31,12 +31,12 @@ RUN chmod a+x /bin/startAlgorithm
 
 # Don't forget to provide your algorithm...
 
-RUN mkdir /opt/sylva-algorithm -p
-COPY src/algorithm.py /opt/sylva-algorithm/algorithm.py
+#RUN mkdir /opt/sylva-algorithm -p
+#COPY src/algorithm.py /opt/sylva-algorithm/algorithm.py
 
 RUN gdown https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n
 RUN mkdir -p src/models && unzip models.zip -d src/
 
-CMD ["python", "src/algorithm.py"]
+#CMD ["python", "src/algorithm.py"]
 
-# No need to add an entry point here as this specification will be wrapped by SYLVA
+

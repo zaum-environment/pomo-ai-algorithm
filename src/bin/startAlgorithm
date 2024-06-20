@@ -4,4 +4,4 @@
 # can do here what is required to call your algorithm. The blueprint uses a simple bash
 # script but you can provide whatever you need to call. Don't forget to use the right 
 # shebang.
-python /opt/sylva-algorithm/algorithm.py
+python src/algorithm.py
