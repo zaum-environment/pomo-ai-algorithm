@@ -37,6 +37,9 @@ RUN chmod a+x /bin/startAlgorithm
 RUN gdown https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n
 RUN mkdir -p src/models && unzip models.zip -d src/
 
+RUN mkdir -p src/logs 
+RUN chmod a+rwx src/logs
+
 #CMD ["python", "src/algorithm.py"]
 
 
