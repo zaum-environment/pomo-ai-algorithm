@@ -40,6 +40,8 @@ RUN mkdir -p src/models && unzip models.zip -d src/
 RUN mkdir -p src/logs 
 RUN chmod a+rwx src/logs
 
+RUN chmod -R a+rwx /wd
+
 #CMD ["python", "src/algorithm.py"]
 
 
