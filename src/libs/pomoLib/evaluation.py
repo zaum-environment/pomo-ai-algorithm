@@ -888,10 +888,12 @@ class Evaluator:
     def createAnalysisFiles(self):
         logger.info("Create analyse files")
         
-        self.__createJsonOuputFile()
+        # Enable for sylva
+        #self.__createJsonOuputFile()
         
-        #self.__createXmlAnalysisFile()
-        #self.__createCsvFile()
+        # Desable for sylva
+        self.__createXmlAnalysisFile()
+        self.__createCsvFile()
         
         
         
