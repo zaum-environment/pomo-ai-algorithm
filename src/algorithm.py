@@ -7,6 +7,7 @@ Created on Wed Dec 21 10:00:36 2022
 version = "v1.34.0.1"
 
 
+
 # # Lizenzinformationen in deutsch, License information in english below
 
 # Dieses Projekt verwendet das VGG19-Modell und das Mask R-CNN-Modell unter den folgenden Lizenzbedingungen:
