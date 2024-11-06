@@ -98,6 +98,7 @@ from libs.pomoLib import pomoUtils
 from datetime import datetime
 import time
 import os
+from pathlib import Path
 
 
 now = datetime.now()
@@ -147,6 +148,12 @@ if __name__ == "__main__":
     """
     logger.info("Starting Mainloop")
     
+    input_root = Path(config.get('MAIN', 'PathSamplesIn'))
+    
+    for folder in input_root.rglob('*'):
+        if folder.is_dir():  # Only directories, not files
+            config.set('MAIN', 'PathSamplesIn', str(input_root / folder))
+    
     print(os.listdir(config.get('MAIN', 'PathSamplesIn')))
     
     for myFile in os.listdir(config.get('MAIN', 'PathSamplesIn')):
@@ -183,7 +190,7 @@ if __name__ == "__main__":
         
         end = time.time()
         print("Processing time: ", end - start)
-        
+        break
         if not PomoAI.lstOpenSamples:
             if flagMsgOut:
                 logger.info("Waiting for new sample")
