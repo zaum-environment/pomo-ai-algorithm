@@ -129,6 +129,7 @@ if __name__ == "__main__":
     # Load original key, not lower case
     config.optionxform = str
     config.read("src/config/config.ini")
+    #config.read("config/config.ini")
     #Create instance of PomoAI and do the initalisation
     logger.debug("Create a instance of PomoAI application")
     PomoAI = app.PomoAI(config,version)
@@ -145,6 +146,9 @@ if __name__ == "__main__":
     
     """
     logger.info("Starting Mainloop")
+    
+    print(os.listdir(config.get('MAIN', 'PathSamplesIn')))
+    
     for myFile in os.listdir(config.get('MAIN', 'PathSamplesIn')):
         
         start = time.time()
