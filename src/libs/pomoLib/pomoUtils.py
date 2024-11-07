@@ -8,6 +8,7 @@ Created on Wed Dec 21 16:39:00 2022
 import os
 import logging 
 import zipfile
+import tempfile
 
 from libs.pomoLib.datatypes import pathComp
 
@@ -120,10 +121,17 @@ def modPath(path: str, pos: int, val: str):
                   
 def unzipProbe (pathZipFile):
     if zipfile.is_zipfile(os.path.join(pathZipFile)):
+        temp_dir = tempfile.mkdtemp()
         with zipfile.ZipFile(pathZipFile, 'r') as zip_ref:
-            zip_ref.extractall(os.path.dirname(pathZipFile))
-            
-        return pathZipFile.split(".zip")[0]
+            zip_ref.extractall(temp_dir)
+
+        subfolders = [f.path for f in os.scandir(temp_dir) if f.is_dir()]
+        if len(subfolders) != 1:
+            raise Exception("Unexpected number of subfolders")
+        
+        temp_dir = os.path.join(temp_dir, subfolders[0])
+
+        return temp_dir
 
 
 def getOffset(value, offset, maxVal):

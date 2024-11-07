@@ -154,21 +154,19 @@ if __name__ == "__main__":
         if folder.is_dir():  # Only directories, not files
             config.set('MAIN', 'PathSamplesIn', str(input_root / folder))
     
-    print(os.listdir(config.get('MAIN', 'PathSamplesIn')))
-    
-    for myFile in os.listdir(config.get('MAIN', 'PathSamplesIn')):
-        
+       
+
+    # Check for new samples to evaluate
+    sampleInfo = PomoAI.checkForNewSample()
+
+    while sampleInfo:
         start = time.time()
-
-        # Check for new samples to evaluate
-        sampleInfo = PomoAI.checkForNewSample()
-
-        if sampleInfo:
-            # create new sample instance
-            PomoAI.createNewSampleEvaluator(sampleInfo)
-            # set flag for msg output to True (Waiting for new sample)
-            flagMsgOut = True
         
+        # create new sample instance
+        PomoAI.createNewSampleEvaluator(sampleInfo)
+        # set flag for msg output to True (Waiting for new sample)
+        flagMsgOut = True
+    
         active = False
         for sample in PomoAI.lstOpenSamples:
             while sample.active:
@@ -187,18 +185,20 @@ if __name__ == "__main__":
                         logger.info(f"Sample {sample.nameSample} set to inactive")
                         logger.info("Waiting for new sample or new img region")
                         sample.active = False
-        
+            
         end = time.time()
         print("Processing time: ", end - start)
-        break
-        if not PomoAI.lstOpenSamples:
-            if flagMsgOut:
-                logger.info("Waiting for new sample")
-                flagMsgOut = False
-                
-            time.sleep(config.getint('MAIN', 'SleepingTime'))
-        elif PomoAI.lstOpenSamples:
-            time.sleep(2)
+
+        sampleInfo = PomoAI.checkForNewSample()
+    
+    #if not PomoAI.lstOpenSamples:
+    #    if flagMsgOut:
+    #        logger.info("Waiting for new sample")
+    #        flagMsgOut = False
+    #        
+    #    time.sleep(config.getint('MAIN', 'SleepingTime'))
+    #elif PomoAI.lstOpenSamples:
+    #    time.sleep(2)
                 
     # except Exception as e:
     #     logger.error(e)
