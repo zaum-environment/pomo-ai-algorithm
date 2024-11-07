@@ -154,7 +154,7 @@ if __name__ == "__main__":
         if folder.is_dir():  # Only directories, not files
             config.set('MAIN', 'PathSamplesIn', str(input_root / folder))
     
-       
+    print(os.listdir(config.get('MAIN', 'PathSamplesIn')))
 
     # Check for new samples to evaluate
     sampleInfo = PomoAI.checkForNewSample()
