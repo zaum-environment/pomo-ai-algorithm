@@ -149,7 +149,7 @@ if __name__ == "__main__":
     logger.info("Starting Mainloop")
     
     input_root = Path(config.get('MAIN', 'PathSamplesIn'))
-      
+
     # Check for new samples to evaluate
     sampleInfo = PomoAI.checkForNewSample()
 
