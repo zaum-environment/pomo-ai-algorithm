@@ -141,8 +141,11 @@ class PomoAI:
                         
                     elif zipfile.is_zipfile(os.path.join(self.config.get("MAIN", "PathSamplesIn"), elem)):
                         with zipfile.ZipFile(os.path.join(self.config.get("MAIN", "PathSamplesIn"), elem), 'r') as f:
-                            if elem.split(".zip")[0] + "/analysis/" in f.namelist():
-                                return {"sampleType": sampleType.zipped, "pathSample": elem}
+                            for name in f.namelist():
+                                if name.endswith('/'):
+                                    folder_name = name.split('/')[0]
+                                    if folder_name + "/analysis/" in f.namelist():
+                                        return {"sampleType": sampleType.zipped, "pathSample": elem}
 
                             
         except FileNotFoundError as e:

@@ -149,13 +149,7 @@ if __name__ == "__main__":
     logger.info("Starting Mainloop")
     
     input_root = Path(config.get('MAIN', 'PathSamplesIn'))
-    
-    for folder in input_root.rglob('*'):
-        if folder.is_dir():  # Only directories, not files
-            config.set('MAIN', 'PathSamplesIn', str(input_root / folder))
-    
-       
-
+      
     # Check for new samples to evaluate
     sampleInfo = PomoAI.checkForNewSample()
 
