@@ -12,8 +12,7 @@ FROM python:3.8
 RUN apt-get update && apt-get install  ffmpeg libsm6 libxext6 unzip -y && \
  pip install h5py opencv-python==4.7.0.72 pandas parso pillow pyzmq scikit-image==0.19.3 scikit-learn==1.3.2 scipy seaborn tensorflow==2.4.0 zipp numpy==1.19.5 imageio imgaug keras-preprocessing==1.1.2 lxml IPython gdown && \
  # As the algorithm will be executed by a non-root user, the output folder has to be writable for all
- mkdir -p /data/output && chmod a+rx /data && chmod a+rwx /data/output && \
- mkdir -p /data/input 
+ mkdir -p /data/output && chmod a+rx /data && chmod a+rwx /data/output
 
 # The startAlgorithm script is the entry point of the container. It is the script that will be executed 
 # when the container is run by SYLVA IT infrastructure. The script itself should just start your algorithm 
