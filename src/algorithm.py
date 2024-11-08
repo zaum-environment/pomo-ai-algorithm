@@ -98,7 +98,7 @@ from libs.pomoLib import pomoUtils
 from datetime import datetime
 import time
 import os
-from pathlib import Path
+
 
 
 now = datetime.now()
@@ -147,11 +147,9 @@ if __name__ == "__main__":
     
     """
     logger.info("Starting Mainloop")
-    
-    input_root = Path(config.get('MAIN', 'PathSamplesIn'))
-    
+
     print(os.listdir(config.get('MAIN', 'PathSamplesIn')))
-    
+
     # Check for new samples to evaluate
     sampleInfo = PomoAI.checkForNewSample()
 
@@ -187,17 +185,17 @@ if __name__ == "__main__":
 
         sampleInfo = PomoAI.checkForNewSample()
     
-    #if not PomoAI.lstOpenSamples:
-    #    if flagMsgOut:
-    #        logger.info("Waiting for new sample")
-    #        flagMsgOut = False
-    #        
-    #    time.sleep(config.getint('MAIN', 'SleepingTime'))
-    #elif PomoAI.lstOpenSamples:
-    #    time.sleep(2)
+        if not PomoAI.lstOpenSamples:
+            if flagMsgOut:
+                logger.info("Waiting for new sample")
+                flagMsgOut = False
                 
-    # except Exception as e:
-    #     logger.error(e)
+            time.sleep(config.getint('MAIN', 'SleepingTime'))
+        elif PomoAI.lstOpenSamples:
+            time.sleep(2)
+                    
+        #except Exception as e:
+            #logger.error(e)
 
 
             

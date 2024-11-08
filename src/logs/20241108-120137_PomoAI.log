@@ -1,0 +1,9 @@
+2024-11-08 12:01:37,613:DEBUG:pomoUtils.py:setup_logger:RootLogger has been initialized
+2024-11-08 12:01:37,613:INFO:algorithm.py:<module>:Load libs
+2024-11-08 12:01:37,619:DEBUG:app.py:<module>:AppLogger has been initialized
+2024-11-08 12:01:37,627:DEBUG:evaluation.py:<module>:EvalLogger has been initialized
+2024-11-08 12:01:37,940:DEBUG:segmenter.py:<module>:SegLogger has been initialized
+2024-11-08 12:01:43,294:DEBUG:classifier.py:<module>:ClassifLogger has been initialized
+2024-11-08 12:01:43,294:DEBUG:algorithm.py:<module>:Load config file
+2024-11-08 12:01:43,295:DEBUG:algorithm.py:<module>:Create a instance of PomoAI application
+2024-11-08 12:01:43,295:INFO:app.py:__init__:Initialize PomoAI v1.34.0.1

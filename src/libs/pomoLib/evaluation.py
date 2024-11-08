@@ -295,22 +295,22 @@ class Evaluator:
                                                       pathSample, "analysis",
                                                       elem))                   
                         
-                    if (xml_root.find("./Device").text):
+                    if (xml_root.find("./Device") is not None and xml_root.find("./Device").text):
                         self.deviceName = xml_root.find("./Device").text
                     
-                    if (xml_root.find("./Analysenvolumenstrom").text):
-                        self.volStrom = int(xml_root.find("./Analysenvolumenstrom").text)
+                    if (xml_root.find("./Analysenvolumenstrom") is not None and xml_root.find("./Analysenvolumenstrom").text):
+                        self.volStrom =  int(float(xml_root.find("./Analysenvolumenstrom").text))
                     
-                    if (xml_root.find("./Seriennummer").text):
+                    if (xml_root.find("./Seriennummer") is not None and xml_root.find("./Seriennummer").text):
                         self.serialNumber = xml_root.find("./Seriennummer").text
                         
-                    if (xml_root.find("./Beginn_der_Probenahme").text):
+                    if (xml_root.find("./Beginn_der_Probenahme") is not None and xml_root.find("./Beginn_der_Probenahme").text):
                         self.beginnDerProbenahme = xml_root.find("./Beginn_der_Probenahme").text
                         
-                    if (xml_root.find("./Ende_der_Probenahme").text):
+                    if (xml_root.find("./Ende_der_Probenahme") is not None and xml_root.find("./Ende_der_Probenahme").text):
                         self.endeDerProbenahme = xml_root.find("./Ende_der_Probenahme").text
                            
-                    if (xml_root.find("./WMO-Stationsnummer").text):
+                    if (xml_root.find("./WMO-Stationsnummer") is not None and xml_root.find("./WMO-Stationsnummer").text):
                         self.stationNumber = xml_root.find("./WMO-Stationsnummer").text
                         
                         
@@ -912,12 +912,26 @@ class Evaluator:
         
         #if self.sampleType == sampleType.zipped:
             #logger.debug("Delete unzippt sample folder")
-        shutil.rmtree(os.path.join(self.pathSampleFolder, self.nameSample))
+        folder_path = os.path.join(self.pathSampleFolder, self.nameSample)
+        if os.path.isdir(folder_path):
+            shutil.rmtree(os.path.join(self.pathSampleFolder, self.nameSample))
 
         
         # remove temp folder (should be last action)
         logger.debug("Remove temp folder from sample")
         shutil.rmtree(self._pathOutTemp)
+        
+        folder_to_zip = os.path.join(self.pathEvalOut, self.nameSample)
+        zip_file_path = shutil.make_archive(folder_to_zip, 'zip', folder_to_zip)
+        
+        zip_file_name = os.path.basename(zip_file_path)
+        
+        destination_path = os.path.join(self.pathOutAnalysis, zip_file_name)
+        shutil.move(zip_file_path, destination_path)
+        
+        shutil.rmtree(folder_to_zip)
+
+        print(f"Folder '{folder_to_zip}' zipped and moved to '{destination_path}'")
         
         self.active = False
         
@@ -1160,7 +1174,7 @@ class Evaluator:
             if os.path.isdir(self.pathOutAnalysis):
                 logger.debug(f"Save analysis file to {self.pathOutAnalysis}")
                 head, tail = os.path.split(xmlFile)
-                shutil.copyfile(xmlFile, os.path.join(self.pathOutAnalysis, tail))
+                #shutil.copyfile(xmlFile, os.path.join(self.pathOutAnalysis, tail))
             else:
                 logger.error(f"Analysis output folder does not exist({self.pathOutAnalysis})")
         
