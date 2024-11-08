@@ -297,7 +297,7 @@ class PomoAI:
         logger.info("Initialize classifier")
         pomoClassifier = classifier.PomoClassification(path)
 
-        pathPollenTreshold = os.path.join("config", 
+        pathPollenTreshold = os.path.join("src/config", 
                                           "tresholdPollen_" + 
                                           f"{pomoClassifier._modelVersion}" + 
                                           ".ini")
