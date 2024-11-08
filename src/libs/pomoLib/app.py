@@ -267,7 +267,7 @@ class PomoAI:
     
     def addToEvalList(self, sample: evaluation.Evaluator):
         with open('evaluatedSamples.txt', 'a', encoding="utf-8") as fd:
-            fd.write("\n" + sample.nameSample+"nothing")
+            fd.write("\n" + sample.nameSample)
             
     
         
@@ -297,7 +297,7 @@ class PomoAI:
         logger.info("Initialize classifier")
         pomoClassifier = classifier.PomoClassification(path)
 
-        pathPollenTreshold = os.path.join("src/config", 
+        pathPollenTreshold = os.path.join("config", 
                                           "tresholdPollen_" + 
                                           f"{pomoClassifier._modelVersion}" + 
                                           ".ini")
