@@ -148,8 +148,6 @@ if __name__ == "__main__":
     """
     logger.info("Starting Mainloop")
 
-    print(os.listdir(config.get('MAIN', 'PathSamplesIn')))
-
     # Check for new samples to evaluate
     sampleInfo = PomoAI.checkForNewSample()
 
