@@ -262,7 +262,7 @@ class Evaluator:
         self.beginnDerProbenahme: str = None 
         self.endeDerProbenahme: str = None 
         self.stationNumber: str = None
-        
+        self.unzippedPathSample: str = None
 
         # Get name of element of sample
         if not self.sampleType == sampleType.file:
@@ -274,7 +274,8 @@ class Evaluator:
                                            sampleInfo.get("pathSample"))
                 
                 pathSample = pomoUtils.unzipProbe(pathZipFile)
-                
+                self.unzippedPathSample = pathSample
+
             elif self.sampleType == sampleType.folder:
                 pathSample = sampleInfo.get("pathSample")
             
@@ -930,6 +931,7 @@ class Evaluator:
         shutil.move(zip_file_path, destination_path)
         
         shutil.rmtree(folder_to_zip)
+        shutil.rmtree(self.unzippedPathSample, ignore_errors=True)
 
         print(f"Folder '{folder_to_zip}' zipped and moved to '{destination_path}'")
         
