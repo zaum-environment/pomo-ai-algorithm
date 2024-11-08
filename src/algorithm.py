@@ -183,17 +183,6 @@ if __name__ == "__main__":
 
         sampleInfo = PomoAI.checkForNewSample()
     
-        if not PomoAI.lstOpenSamples:
-            if flagMsgOut:
-                logger.info("Waiting for new sample")
-                flagMsgOut = False
-                
-            time.sleep(config.getint('MAIN', 'SleepingTime'))
-        elif PomoAI.lstOpenSamples:
-            time.sleep(2)
-                    
-        #except Exception as e:
-            #logger.error(e)
 
 
             
