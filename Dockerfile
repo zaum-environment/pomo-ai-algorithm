@@ -4,7 +4,7 @@
 # Define whatever base image is fine for your algorithm. The only requirement is that it provides the 
 # possibility to call a script "runAlgorithm" that will be executed by SYLVA IT Infrastructure. Linux 
 # based images are recommended.
-FROM ubuntu:latest
+# FROM ubuntu:latest
 
 # Prepare the container for the algorithm. This includes installing all necessary packages and setting 
 # up the environment.
@@ -33,14 +33,15 @@ RUN chmod a+x /bin/startAlgorithm
 #RUN mkdir /opt/sylva-algorithm -p
 #COPY src/algorithm.py /opt/sylva-algorithm/algorithm.py
 
-RUN gdown https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n
-RUN mkdir -p src/models && unzip models.zip -d src/
+#RUN gdown https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n
+#RUN mkdir -p src/models && unzip models.zip -d src/
+#RUN mkdir -p src/models
+#RUN chmod a+rwx src/models
 
-RUN mkdir -p src/logs 
-RUN chmod a+rwx src/logs
+#RUN mkdir -p src/logs 
+#RUN chmod a+rwx src/logs
 
+RUN mkdir -p src/models src/logs && chmod a+rwx src/models src/logs
 RUN chmod -R a+rwx /wd
 
 #CMD ["python", "src/algorithm.py"]
-
-

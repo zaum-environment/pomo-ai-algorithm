@@ -13,5 +13,16 @@ References:
 - [Helmut Hund GmbH](https://www.hund.de)
 
 
+## Run
+To use this docker, follow these steps:
+
+1. **Download the model file** from the following link:  
+   [https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n](https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n)
+
+2. **Extract the downloaded file** into a local folder.
+3. ** Bind your local folder to /wd/src/models 
+
+
+ 
 ## License
 Please check LICENSE.txt
