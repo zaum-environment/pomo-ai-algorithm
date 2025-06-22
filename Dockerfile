@@ -22,26 +22,13 @@ RUN apt-get update && apt-get install  ffmpeg libsm6 libxext6 unzip -y && \
 WORKDIR /wd
 
 #to COPY the remote file at working directory in container
-COPY . ./
-
+RUN mkdir src
+COPY src ./src/
 
 COPY src/bin/startAlgorithm /bin/startAlgorithm
 RUN chmod a+x /bin/startAlgorithm
 
-# Don't forget to provide your algorithm...
-
-#RUN mkdir /opt/sylva-algorithm -p
-#COPY src/algorithm.py /opt/sylva-algorithm/algorithm.py
-
-#RUN gdown https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n
-#RUN mkdir -p src/models && unzip models.zip -d src/
-#RUN mkdir -p src/models
-#RUN chmod a+rwx src/models
-
-#RUN mkdir -p src/logs 
-#RUN chmod a+rwx src/logs
-
-RUN mkdir -p src/models src/logs && chmod a+rwx src/models src/logs
+RUN mkdir -p src/logs
 RUN chmod -R a+rwx /wd
 
 #CMD ["python", "src/algorithm.py"]
