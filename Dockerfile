@@ -28,6 +28,8 @@ COPY src ./src/
 COPY src/bin/startAlgorithm /bin/startAlgorithm
 RUN chmod a+x /bin/startAlgorithm
 
+RUN unzip src/models/models.zip -d src/
+
 RUN mkdir -p src/logs
 RUN chmod -R a+rwx /wd
 
