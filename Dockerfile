@@ -1,11 +1,6 @@
 # This is the Dockerfile a algorithm developer has to provide. It will be used by SYLVA IT Infrastructure 
 # to build an image that will be used to run the algorithm.
 
-# Define whatever base image is fine for your algorithm. The only requirement is that it provides the 
-# possibility to call a script "runAlgorithm" that will be executed by SYLVA IT Infrastructure. Linux 
-# based images are recommended.
-# FROM ubuntu:latest
-
 # Prepare the container for the algorithm. This includes installing all necessary packages and setting 
 # up the environment.
 FROM python:3.8
@@ -22,15 +17,23 @@ RUN apt-get update && apt-get install  ffmpeg libsm6 libxext6 unzip -y && \
 WORKDIR /wd
 
 #to COPY the remote file at working directory in container
-RUN mkdir src
-COPY src ./src/
+COPY . ./
+
 
 COPY src/bin/startAlgorithm /bin/startAlgorithm
 RUN chmod a+x /bin/startAlgorithm
 
-RUN unzip src/models/models.zip -d src/
+# Don't forget to provide your algorithm...
 
-RUN mkdir -p src/logs
+#RUN mkdir /opt/sylva-algorithm -p
+#COPY src/algorithm.py /opt/sylva-algorithm/algorithm.py
+
+RUN gdown https://drive.google.com/uc?id=1UMZiJ9lSBq9a8Xxtm8NNfb5vbmNnTm5n
+RUN mkdir -p src/models && unzip models.zip -d src/
+
+RUN mkdir -p src/logs 
+RUN chmod a+rwx src/logs
+
 RUN chmod -R a+rwx /wd
 
 #CMD ["python", "src/algorithm.py"]
